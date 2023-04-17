@@ -1,0 +1,41 @@
+CREATE TABLE discipline (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE coach (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE specialisation (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    discipline_id INTEGER NOT NULL REFERENCES discipline(id),
+    coach_id INTEGER NOT NULL REFERENCES coach(id)
+);
+
+CREATE TABLE class (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    discipline_id INTEGER NOT NULL REFERENCES discipline(id),
+    coach_id INTEGER NOT NULL REFERENCES coach(id)
+);
+
+CREATE TABLE personal_record (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    attendance_count INTEGER DEFAULT 0,
+    preferred_discipline_id INTEGER NOT NULL REFERENCES discipline(id)
+);
+
+CREATE TABLE student (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    personal_record_id INTEGER NOT NULL REFERENCES personal_record(id)
+);
+
+CREATE TABLE enrollment (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    student_id INTEGER NOT NULL REFERENCES student(id),
+    class_id INTEGER NOT NULL REFERENCES class(id)
+);
