@@ -1,12 +1,12 @@
 package raven.backend.service;
 
-import raven.backend.entity.Discipline;
+import raven.backend.dto.DisciplineDto;
 
 import java.util.List;
 
 public interface DisciplineService {
-    Discipline saveDiscipline(Discipline discipline);
-    List<Discipline> getDisciplines();
-    Discipline updateDiscipline(Discipline discipline, Integer disciplineId);
+    DisciplineDto saveDiscipline(DisciplineDto disciplineDto);
+    List<DisciplineDto> getDisciplines();
+    DisciplineDto updateDiscipline(DisciplineDto disciplineDto, Integer disciplineId);
     void deleteDisciplineById(Integer disciplineId);
 }

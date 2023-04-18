@@ -21,8 +21,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.projectlombok:lombok:1.18.26'
 //    implementation 'org.springframework.session:spring-session-jdbc'
+    implementation 'org.mapstruct:mapstruct:1.5.4.Final'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.4.Final'
 }
 
 tasks.named('test') {

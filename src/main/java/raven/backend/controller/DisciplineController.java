@@ -2,7 +2,7 @@ package raven.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import raven.backend.entity.Discipline;
+import raven.backend.dto.DisciplineDto;
 import raven.backend.service.DisciplineService;
 
 import java.util.List;
@@ -13,23 +13,23 @@ public class DisciplineController {
     private DisciplineService disciplineService;
 
     @PostMapping("/disciplines")
-    public Discipline saveDiscipline(
-            @RequestBody Discipline discipline)
+    public DisciplineDto saveDiscipline(
+            @RequestBody DisciplineDto disciplineDto)
     {
-        return disciplineService.saveDiscipline(discipline);
+        return disciplineService.saveDiscipline(disciplineDto);
     }
 
     @GetMapping("/disciplines")
-    public List<Discipline> getDisciplines()
+    public List<DisciplineDto> getDisciplines()
     {
         return disciplineService.getDisciplines();
     }
 
     @PutMapping("/disciplines/{id}")
-    public Discipline updateDiscipline(@RequestBody Discipline discipline,
+    public DisciplineDto updateDiscipline(@RequestBody DisciplineDto disciplineDto,
                                        @PathVariable("id") Integer disciplineId)
     {
-        return disciplineService.updateDiscipline(discipline, disciplineId);
+        return disciplineService.updateDiscipline(disciplineDto, disciplineId);
     }
 
     @DeleteMapping("/disciplines/{id}")
