@@ -5,8 +5,8 @@ import raven.backend.dto.DisciplineDto;
 import java.util.List;
 
 public interface DisciplineService {
-    DisciplineDto saveDiscipline(DisciplineDto disciplineDto);
-    List<DisciplineDto> getDisciplines();
-    DisciplineDto updateDiscipline(DisciplineDto disciplineDto, Integer disciplineId);
-    void deleteDisciplineById(Integer disciplineId);
+    DisciplineDto create(DisciplineDto disciplineDto);
+    List<DisciplineDto> getAll();
+    DisciplineDto update(DisciplineDto disciplineDto, Integer disciplineId);
+    void deleteById(Integer disciplineId);
 }

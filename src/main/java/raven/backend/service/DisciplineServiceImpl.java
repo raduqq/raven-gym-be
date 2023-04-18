@@ -18,7 +18,7 @@ public class DisciplineServiceImpl implements DisciplineService {
     private DisciplineRepository disciplineRepository;
 
     @Override
-    public DisciplineDto saveDiscipline(DisciplineDto disciplineDto) {
+    public DisciplineDto create(DisciplineDto disciplineDto) {
         Discipline discipline = DisciplineMapper.INSTANCE.toDiscipline(disciplineDto);
         Discipline savedDiscipline = disciplineRepository.save(discipline);
 
@@ -26,7 +26,7 @@ public class DisciplineServiceImpl implements DisciplineService {
     }
 
     @Override
-    public List<DisciplineDto> getDisciplines() {
+    public List<DisciplineDto> getAll() {
 
         return disciplineRepository.findAll()
                 .stream()
@@ -35,9 +35,9 @@ public class DisciplineServiceImpl implements DisciplineService {
     }
 
     @Override
-    public DisciplineDto updateDiscipline(DisciplineDto disciplineDto, Integer disciplineId) {
+    public DisciplineDto update(DisciplineDto disciplineDto, Integer disciplineId) {
         Discipline discipline = disciplineRepository.findById(disciplineId)
-                .orElseThrow(() -> new NoSuchElementException("No discipline found with id " + disciplineId));
+                .orElseThrow(() -> new NoSuchElementException("No discipline found with ID " + disciplineId));
 
         if (Objects.nonNull(discipline.getName()) && !"".equalsIgnoreCase(discipline.getName())) {
             discipline.setName(disciplineDto.name());
@@ -48,7 +48,10 @@ public class DisciplineServiceImpl implements DisciplineService {
     }
 
     @Override
-    public void deleteDisciplineById(Integer disciplineId) {
+    public void deleteById(Integer disciplineId) {
+        disciplineRepository.findById(disciplineId)
+                .orElseThrow(() -> new NoSuchElementException("No discipline found with ID " + disciplineId));
+
         disciplineRepository.deleteById(disciplineId);
     }
 }
