@@ -3,7 +3,7 @@ package raven.backend.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Discipline {
+public class Coach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
