@@ -39,7 +39,7 @@ public class DisciplineServiceImpl implements DisciplineService {
         Discipline discipline = disciplineRepository.findById(disciplineId)
                 .orElseThrow(() -> new NoSuchElementException("No discipline found with ID " + disciplineId));
 
-        if (Objects.nonNull(discipline.getName()) && !"".equalsIgnoreCase(discipline.getName())) {
+        if (Objects.nonNull(disciplineDto.name()) && !"".equalsIgnoreCase(disciplineDto.name())) {
             discipline.setName(disciplineDto.name());
         }
 

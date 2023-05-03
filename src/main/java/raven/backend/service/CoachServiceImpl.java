@@ -39,7 +39,7 @@ public class CoachServiceImpl implements CoachService {
         Coach coach = coachRepository.findById(coachId)
                 .orElseThrow(() -> new NoSuchElementException("No coach found with ID " + coachId));
 
-        if (Objects.nonNull(coach.getName()) && !"".equalsIgnoreCase(coach.getName())) {
+        if (Objects.nonNull(coachDto.name()) && !"".equalsIgnoreCase(coachDto.name())) {
             coach.setName(coachDto.name());
         }
 

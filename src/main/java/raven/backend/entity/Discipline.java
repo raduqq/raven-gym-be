@@ -3,6 +3,7 @@ package raven.backend.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "discipline")
 public class Discipline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
