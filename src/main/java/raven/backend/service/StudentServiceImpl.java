@@ -26,7 +26,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<StudentDto> getAll() {
-
         return studentRepository.findAll()
                 .stream()
                 .map(StudentMapper.INSTANCE::toStudentDto)

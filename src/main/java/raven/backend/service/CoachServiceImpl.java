@@ -26,7 +26,6 @@ public class CoachServiceImpl implements CoachService {
 
     @Override
     public List<CoachDto> getAll() {
-
         return coachRepository.findAll()
                 .stream()
                 .map(CoachMapper.INSTANCE::toCoachDto)

@@ -35,7 +35,6 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public List<LessonDto> getAll() {
-
         return lessonRepository.findAll()
                 .stream()
                 .map(LessonMapper.INSTANCE::toLessonDto)
@@ -78,6 +77,9 @@ public class LessonServiceImpl implements LessonService {
 
         Lesson savedLesson = lessonRepository.save(lesson);
         coachRepository.save(newCoach);
+        if (Objects.nonNull(currCoach)){
+            coachRepository.save(currCoach);
+        }
 
         return LessonMapper.INSTANCE.toLessonDto(savedLesson);
     }
@@ -99,6 +101,9 @@ public class LessonServiceImpl implements LessonService {
 
         Lesson savedLesson = lessonRepository.save(lesson);
         disciplineRepository.save(newDiscipline);
+        if (Objects.nonNull(currDiscipline)){
+            disciplineRepository.save(currDiscipline);
+        }
 
         return LessonMapper.INSTANCE.toLessonDto(savedLesson);
     }

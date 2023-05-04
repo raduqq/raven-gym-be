@@ -26,7 +26,6 @@ public class DisciplineServiceImpl implements DisciplineService {
 
     @Override
     public List<DisciplineDto> getAll() {
-
         return disciplineRepository.findAll()
                 .stream()
                 .map(DisciplineMapper.INSTANCE::toDisciplineDto)
