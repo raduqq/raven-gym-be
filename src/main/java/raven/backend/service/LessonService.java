@@ -14,4 +14,5 @@ public interface LessonService {
     void deleteById(Integer lessonId);
 
     LessonDto updateLessonCoach(Integer lessonId, Integer coachId);
+    LessonDto updateLessonDiscipline(Integer lessonId, Integer disciplineId);
 }

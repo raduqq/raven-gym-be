@@ -78,4 +78,17 @@ public class LessonController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
+    @PutMapping("/lessons/{lessonId}/discipline/{disciplineId}")
+    public ResponseEntity<Object> updateLessonsDiscipline(@PathVariable("lessonId") Integer lessonId,
+                                                     @PathVariable("disciplineId") Integer disciplineId) {
+        try {
+            LessonDto updatedDto = lessonService.updateLessonDiscipline(lessonId, disciplineId);
+            return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 }

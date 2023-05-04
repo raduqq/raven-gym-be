@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import raven.backend.dto.LessonDto;
 import raven.backend.entity.Coach;
+import raven.backend.entity.Discipline;
 import raven.backend.entity.Lesson;
 import raven.backend.mapper.LessonMapper;
 import raven.backend.repository.CoachRepository;
+import raven.backend.repository.DisciplineRepository;
 import raven.backend.repository.LessonRepository;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +21,9 @@ public class LessonServiceImpl implements LessonService {
 
     @Autowired
     private CoachRepository coachRepository;
+
+    @Autowired
+    private DisciplineRepository disciplineRepository;
 
     @Override
     public LessonDto create(LessonDto lessonDto) {
@@ -75,6 +78,27 @@ public class LessonServiceImpl implements LessonService {
 
         Lesson savedLesson = lessonRepository.save(lesson);
         coachRepository.save(newCoach);
+
+        return LessonMapper.INSTANCE.toLessonDto(savedLesson);
+    }
+
+    @Override
+    public LessonDto updateLessonDiscipline(Integer lessonId, Integer disciplineId) {
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new NoSuchElementException("No lesson found with ID " + lessonId));
+        Discipline newDiscipline = disciplineRepository.findById(disciplineId)
+                .orElseThrow(() -> new NoSuchElementException("No discipline found with ID " + disciplineId));
+
+        Discipline currDiscipline = lesson.getDiscipline();
+        if (Objects.nonNull(currDiscipline)){
+            currDiscipline.getLessons().remove(lesson);
+        }
+
+        lesson.setDiscipline(newDiscipline);
+        newDiscipline.getLessons().add(lesson);
+
+        Lesson savedLesson = lessonRepository.save(lesson);
+        disciplineRepository.save(newDiscipline);
 
         return LessonMapper.INSTANCE.toLessonDto(savedLesson);
     }

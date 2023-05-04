@@ -1,10 +1,12 @@
 package raven.backend.dto;
 
 import raven.backend.entity.Coach;
+import raven.backend.entity.Discipline;
 
 public record LessonDto(
         Integer id,
         String name,
-        Coach coach
+        Coach coach,
+        Discipline discipline
 ) {
 }

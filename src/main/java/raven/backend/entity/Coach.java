@@ -21,6 +21,7 @@ public class Coach {
 
     @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonManagedReference("lesson-coach")
     private Set<Lesson> lessons = new HashSet<>();
 
     public Integer getId() {
@@ -39,7 +40,6 @@ public class Coach {
         this.name = name;
     }
 
-    @JsonManagedReference
     public Set<Lesson> getLessons() {
         return lessons;
     }

@@ -15,7 +15,12 @@ public class Lesson {
     private String name;
 
     @ManyToOne()
+    @JsonBackReference("lesson-coach")
     private Coach coach;
+
+    @ManyToOne()
+    @JsonBackReference("lesson-discipline")
+    private Discipline discipline;
 
     public Integer getId() {
         return id;
@@ -33,12 +38,21 @@ public class Lesson {
         this.name = name;
     }
 
-    @JsonBackReference
+
     public Coach getCoach() {
         return coach;
     }
 
     public void setCoach(Coach coach) {
         this.coach = coach;
+    }
+
+
+    public Discipline getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(Discipline discipline) {
+        this.discipline = discipline;
     }
 }
