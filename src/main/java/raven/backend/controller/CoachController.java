@@ -16,9 +16,7 @@ public class CoachController {
     private CoachService coachService;
 
     @PostMapping("/coaches")
-    public ResponseEntity<Object> create(
-            @RequestBody CoachDto coachDto)
-    {
+    public ResponseEntity<Object> create(@RequestBody CoachDto coachDto) {
         try {
             CoachDto createdCoachDto = coachService.create(coachDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdCoachDto);
@@ -37,15 +35,13 @@ public class CoachController {
     }
 
     @GetMapping("/coaches")
-    public List<CoachDto> getAll()
-    {
+    public List<CoachDto> getAll() {
         return coachService.getAll();
     }
 
     @PutMapping("/coaches/{id}")
     public ResponseEntity<Object> update(@RequestBody CoachDto coachDto,
-                                       @PathVariable("id") Integer coachId)
-    {
+                                         @PathVariable("id") Integer coachId) {
         try {
             CoachDto updatedCoachDto = coachService.update(coachDto, coachId);
             return ResponseEntity.status(HttpStatus.OK).body(updatedCoachDto);
@@ -57,9 +53,7 @@ public class CoachController {
     }
 
     @DeleteMapping("/coaches/{id}")
-    public ResponseEntity<Object> deleteById(@PathVariable("id")
-                                       Integer coachId)
-    {
+    public ResponseEntity<Object> deleteById(@PathVariable("id") Integer coachId) {
         try {
             coachService.deleteById(coachId);
 

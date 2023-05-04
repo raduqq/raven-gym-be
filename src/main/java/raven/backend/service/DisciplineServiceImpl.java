@@ -9,7 +9,6 @@ import raven.backend.repository.DisciplineRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,9 +38,7 @@ public class DisciplineServiceImpl implements DisciplineService {
         Discipline discipline = disciplineRepository.findById(disciplineId)
                 .orElseThrow(() -> new NoSuchElementException("No discipline found with ID " + disciplineId));
 
-        if (Objects.nonNull(disciplineDto.name()) && !"".equalsIgnoreCase(disciplineDto.name())) {
-            discipline.setName(disciplineDto.name());
-        }
+        discipline.setName(disciplineDto.name());
 
         Discipline savedDiscipline = disciplineRepository.save(discipline);
         return DisciplineMapper.INSTANCE.toDisciplineDto(savedDiscipline);

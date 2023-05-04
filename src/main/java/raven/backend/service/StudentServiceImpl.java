@@ -9,7 +9,6 @@ import raven.backend.repository.StudentRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,13 +38,8 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchElementException("No student found with ID " + studentId));
 
-        if (Objects.nonNull(studentDto.name()) && !"".equalsIgnoreCase(studentDto.name())) {
-            student.setName(studentDto.name());
-        }
-
-        if (Objects.nonNull(studentDto.email()) && !"".equalsIgnoreCase(studentDto.email())) {
-            student.setEmail(studentDto.email());
-        }
+        student.setName(studentDto.name());
+        student.setEmail(studentDto.email());
 
         Student savedStudent = studentRepository.save(student);
         return StudentMapper.INSTANCE.toStudentDto(savedStudent);

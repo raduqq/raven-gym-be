@@ -16,12 +16,10 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/students")
-    public ResponseEntity<Object> create(
-            @RequestBody StudentDto studentDto)
-    {
+    public ResponseEntity<Object> create(@RequestBody StudentDto dto) {
         try {
-            StudentDto createdStudentDto = studentService.create(studentDto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdStudentDto);
+            StudentDto createdDto = studentService.create(dto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdDto);
         } catch (Exception e) {
             String eMessage = e.getMessage();
 
@@ -37,18 +35,16 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public List<StudentDto> getAll()
-    {
+    public List<StudentDto> getAll() {
         return studentService.getAll();
     }
 
     @PutMapping("/students/{id}")
-    public ResponseEntity<Object> update(@RequestBody StudentDto studentDto,
-                                         @PathVariable("id") Integer studentId)
-    {
+    public ResponseEntity<Object> update(@RequestBody StudentDto dto,
+                                         @PathVariable("id") Integer id) {
         try {
-            StudentDto updatedStudentDto = studentService.update(studentDto, studentId);
-            return ResponseEntity.status(HttpStatus.OK).body(updatedStudentDto);
+            StudentDto updatedDto = studentService.update(dto, id);
+            return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         } catch (Exception e) {
@@ -57,11 +53,9 @@ public class StudentController {
     }
 
     @DeleteMapping("/students/{id}")
-    public ResponseEntity<Object> deleteById(@PathVariable("id")
-                                             Integer studentId)
-    {
+    public ResponseEntity<Object> deleteById(@PathVariable("id") Integer id) {
         try {
-            studentService.deleteById(studentId);
+            studentService.deleteById(id);
 
             String successMessage = "Deleted successfully";
             return ResponseEntity.status(HttpStatus.OK).body(successMessage);

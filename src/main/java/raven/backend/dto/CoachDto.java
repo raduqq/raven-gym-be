@@ -1,7 +1,12 @@
 package raven.backend.dto;
 
+import raven.backend.entity.Lesson;
+
+import java.util.Set;
+
 public record CoachDto(
         Integer id,
-        String name
+        String name,
+        Set<Lesson> lessons
 ) {
 }

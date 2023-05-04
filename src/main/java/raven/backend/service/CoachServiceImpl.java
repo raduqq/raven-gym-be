@@ -9,7 +9,6 @@ import raven.backend.repository.CoachRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,9 +38,7 @@ public class CoachServiceImpl implements CoachService {
         Coach coach = coachRepository.findById(coachId)
                 .orElseThrow(() -> new NoSuchElementException("No coach found with ID " + coachId));
 
-        if (Objects.nonNull(coachDto.name()) && !"".equalsIgnoreCase(coachDto.name())) {
-            coach.setName(coachDto.name());
-        }
+        coach.setName(coachDto.name());
 
         Coach savedCoach = coachRepository.save(coach);
         return CoachMapper.INSTANCE.toCoachDto(savedCoach);

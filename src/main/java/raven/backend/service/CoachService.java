@@ -6,7 +6,10 @@ import java.util.List;
 
 public interface CoachService {
     CoachDto create(CoachDto coachDto);
+
     List<CoachDto> getAll();
+
     CoachDto update(CoachDto coachDto, Integer coachId);
+
     void deleteById(Integer coachId);
 }
