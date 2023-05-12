@@ -3,6 +3,7 @@ package raven.backend.security.config;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
@@ -12,8 +13,8 @@ import raven.backend.security.token.TokenRepository;
 @Service
 @RequiredArgsConstructor
 public class LogoutService implements LogoutHandler {
-
-    private final TokenRepository tokenRepository;
+    @Autowired
+    private TokenRepository tokenRepository;
 
     @Override
     public void logout(

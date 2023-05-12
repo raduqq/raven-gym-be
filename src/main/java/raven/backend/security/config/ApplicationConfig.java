@@ -1,6 +1,7 @@
 package raven.backend.security.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,8 +17,8 @@ import raven.backend.security.user.UserRepository;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-
-    private final UserRepository repository;
+    @Autowired
+    private UserRepository repository;
 
     @Bean
     public UserDetailsService userDetailsService() {

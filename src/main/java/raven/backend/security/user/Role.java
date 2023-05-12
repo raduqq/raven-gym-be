@@ -1,7 +1,5 @@
 package raven.backend.security.user;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collections;
@@ -10,8 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static raven.backend.security.user.Permission.*;
-
-@RequiredArgsConstructor
 public enum Role {
 
     USER(Collections.emptySet()),
@@ -36,8 +32,15 @@ public enum Role {
             )
     );
 
-    @Getter
     private final Set<Permission> permissions;
+
+    Role(Set<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
 
     public List<SimpleGrantedAuthority> getAuthorities() {
         var authorities = getPermissions()
