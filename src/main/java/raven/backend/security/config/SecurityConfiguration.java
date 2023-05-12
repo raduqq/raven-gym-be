@@ -53,8 +53,15 @@ public class SecurityConfiguration {
                 .permitAll()
 
 
-                .requestMatchers("/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
+                .requestMatchers("/coaches/**").hasAnyRole(ADMIN.name(), MANAGER.name())
 
+                .requestMatchers(GET, "/coaches/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
+                .requestMatchers(POST, "/coaches/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
+                .requestMatchers(PUT, "/coaches/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
+                .requestMatchers(DELETE, "/coaches/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
+
+
+                .requestMatchers("/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
 
                 .requestMatchers(GET, "/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
                 .requestMatchers(POST, "/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
