@@ -12,6 +12,10 @@ public class RegisterRequest {
     private String password;
     private Role role;
 
+    public RegisterRequest() {
+
+    }
+
     public RegisterRequest(String firstname, String lastname, String email, String password, Role role) {
         this.firstname = firstname;
         this.lastname = lastname;
