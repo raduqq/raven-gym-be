@@ -40,6 +40,7 @@ public class SecurityConfiguration {
                 .requestMatchers(
                         "/auth/**",
                         "/disciplines/**",
+                        "/students/**",
                         "/v2/api-docs",
                         "/v3/api-docs",
                         "/v3/api-docs/**",
